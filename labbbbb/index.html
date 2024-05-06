@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .form-container {
+            display: none;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .form-container.active {
+            display: flex;
+        }
+
+        .form-container input[type="text"] {
+            padding: 8px;
+            margin-right: 5px;
+        }
+
+        .form-container button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<script>
+    
+</script>
+<body>
+    <nav>
+        <a href="#" onclick="toggleForm('create')">Create</a>
+        <a href="#" onclick="toggleForm('insert')">Insert</a>
+        <a href="#" onclick="toggleForm('update')">Update</a>
+        <a href="#" onclick="toggleForm('search')">Search</a>
+        <a href="#" onclick="toggleForm('delete')">Delete</a>
+    </nav>
+    
+    <!-- Create Form -->
+    <div id="create-form" class="form-container">
+        <form method="post">
+            <input type="text" name="name" id="name" placeholder="DB Name">
+            <button>Create</button>
+        </form>
+        
+    </div>
+
+    <!-- Insert Form (similar structure for other forms) -->
+    <div id="insert-form" class="form-container">
+        <form action="http://localhost:8020/employeeinsert" method="post">
+            <input type="text" name="name" id="name" placeholder="Name">
+            <input type="text" name="Dept" id="Dept" placeholder="Department">
+            <input type="text" name="DOJ" id="DOJ" placeholder="Date of Joining">
+            <button type="submit">Insert</button>
+        </form>
+    </div>
+
+    <!-- Update Form -->
+    <div id="update-form" class="form-container">
+        <form action="http://localhost:8020/employeeupdate" method="post">
+            <input type="text" name="name" id="name" placeholder="The Name to be updated">
+
+            <input type="text" name="Dept" id="Dept" placeholder="Department">
+            <input type="text" name="DOJ" id="DOJ" placeholder="Date of Joining">
+            <button type = "submit">Update</button>
+        </form>
+        
+    </div>
+
+    <!-- Search Form -->
+    <div id="search-form" class="form-container">
+        <form action="http://localhost:8020/employeesearch" method="post">
+            <input type="text" name="name" id="name" placeholder="Name">
+            <button>Search</button>
+        </form>
+        
+    </div>
+
+    <!-- Delete Form -->
+    <div id="delete-form" class="form-container">
+        <form action="http://localhost:8020/employeedel" method="post">
+            <input type="text" name="name" id="name" placeholder="Name">
+            <button>Delete</button>
+        </form>
+        
+    </div>
+
+    <script>
+        function toggleForm(formId) {
+            var forms = document.getElementsByClassName("form-container");
+            for (var i = 0; i < forms.length; i++) {
+                forms[i].classList.remove("active");
+            }
+            document.getElementById(formId + "-form").classList.add("active");
+        }
+        
+    </script>
+</body>
+</html>
+
